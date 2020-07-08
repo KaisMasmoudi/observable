@@ -1,0 +1,43 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mohamed">
+</mat-form-field>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>
+  <!-- Id Column -->
+  <ng-container matColumnDef="Id">
+    <mat-header-cell class="table-address-column" *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+    <mat-cell class="table-address-column" *matCellDef="let element"> {{element.Id}} </mat-cell>
+  </ng-container>
+
+  <!-- Username Column -->
+  <ng-container matColumnDef="UserName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> UserName </mat-header-cell>
+    <mat-cell class="table-address-column" *matCellDef="let element"> {{element.UserName}} </mat-cell>
+  </ng-container>
+
+  <!-- DeviceIP Column -->
+  <ng-container matColumnDef="DeviceIP">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> DeviceIP </mat-header-cell>
+    <mat-cell class="table-address-column" *matCellDef="let element"> {{element.DeviceIP}} </mat-cell>
+  </ng-container>
+
+  <!-- DateIN Column -->
+  <ng-container matColumnDef="DateIN">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> DateIN </mat-header-cell>
+    <mat-cell class="table-address-column" *matCellDef="let element"> {{element.DateIN}} </mat-cell>
+  </ng-container>
+
+  <!-- DateOUT Column -->
+  <ng-container matColumnDef="DateOUT">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> DateOUT </mat-header-cell>
+    <mat-cell class="table-address-column" *matCellDef="let element"> {{element.DateOUT}} </mat-cell>
+  </ng-container>
+
+  <!-- Display values from DB-->
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'missing-log': row.DateIN == null || row.DateOUT==null}"></mat-row>
+
+</table>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>
